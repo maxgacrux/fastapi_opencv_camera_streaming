@@ -4,6 +4,7 @@ from app.func.streaming_threading import BaseCamera
 import cv2
 
 camera = APIRouter()
+frame_c = cv2.VideoCapture(0)
 
 
 class Camera(BaseCamera):
@@ -12,7 +13,8 @@ class Camera(BaseCamera):
 
     @staticmethod
     def frames():
-        frame = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        frame = cv2.VideoCapture(0, cv2.CAP_V4L) #cv2.CAP_DSHOW)
+        print(frame.isOpened(), "\n\n\n")
         if not frame.isOpened():
             raise RuntimeError('Could not start camera.')
 

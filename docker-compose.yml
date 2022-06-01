@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  camera_streaming:
+    ports:
+      - 8000:8000
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /dev/video0:/dev/video0
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    container_name: camera_streaming
